@@ -107,6 +107,7 @@ nav {
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-top: 1.25rem;
 }
 
 .headshot img {
@@ -116,9 +117,9 @@ nav {
 }
 
 .social-icons {
-    margin-top: 1rem; /* Adds space between the image and icons */
+    margin-top: 0.25rem; /* Adds space between the image and icons */
     display: flex;
-    justify-content: center; /* Centers the icons horizontally */
+    justify-content: left; /* Centers the icons horizontally */
     gap: 1rem; /* Space between the icons */
 }
 
