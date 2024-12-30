@@ -5,7 +5,9 @@
     --max-width: 1000px;
     --horizontal-padding: 2rem;
     --nav-width: 1200px;
+    --card-width: 500px;
     --card-background: #dbd9d6;
+    --location-color: #050505;
 }
 
 body {
@@ -22,6 +24,32 @@ header {
     background: #333;
     color: #fff;
     padding: 1rem;
+}
+
+footer {
+    text-align: center; /* Center align footer content */
+    padding: 20px; /* Add padding around the footer */
+    
+}
+
+footer a {
+    color: var(--link-color); /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-size: 1rem; /* Base font size */
+    transition: font-size 0.2s ease, color 0.2s ease; /* Smooth hover effect */
+    padding: 10px;
+}
+
+footer a:visited {
+    color: var(--link-color); /* Keep link color unchanged after clicking */
+}
+
+footer a:hover {
+    color: var(--link-color); /* Optional: Darken the color on hover */
+    text-decoration: underline;
+}
+.location {
+    color: var(--location-color);
 }
 
 /* Navigation Styles */
@@ -148,11 +176,40 @@ nav {
     margin-bottom: 1rem;
 }
 
-
-
-.location {
-    color: #676767
+.project-cards {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
 }
+.project {
+    text-decoration: none;
+    flex: 1;
+    background-color: #D6D4D1;
+    border-radius: 15px;
+    padding: 1rem;
+    margin-bottom: 15px;
+    max-width: var(--card-width);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    justify-content: left;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
+}
+
+.project p {
+    color: var(--location-color);
+    font-style: italic;
+}
+
+.project:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Add a stronger shadow */
+}
+
+.research,
+.personal {
+    flex: 1;
+}
+
 
 main {
     padding: 2rem;
