@@ -42,6 +42,7 @@ Data visualization is crucial for understanding complex datasets and communicati
 ## User Experience
 
 The platform is designed with user experience in mind:
+
 - **Intuitive Workflow**: Step-by-step process for creating visualizations
 - **Template Library**: Pre-built templates for common visualization types
 - **Customization Options**: Extensive customization for colors, fonts, and layouts
@@ -50,6 +51,7 @@ The platform is designed with user experience in mind:
 ## Impact
 
 Since its launch, the platform has been used by:
+
 - **500+ Researchers** from various academic institutions
 - **200+ Data Scientists** in industry
 - **50+ Educational Institutions** for teaching data visualization
@@ -58,6 +60,7 @@ Since its launch, the platform has been used by:
 ## Future Enhancements
 
 Planned improvements include:
+
 - Machine learning-powered chart recommendations
 - Advanced analytics integration
 - Mobile app development

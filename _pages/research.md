@@ -46,7 +46,7 @@ nav_order: 4
         <div class="research-content">
           <h5>Current Projects</h5>
           <p>Working on climate prediction models using satellite imagery and deep learning that aims to improve weather forecasting accuracy by 15%.</p>
-          
+
           <h5>Key Publications</h5>
           <ul>
             <li><strong>Deep Learning for Climate Pattern Recognition</strong> - Nature Climate Change, 2023</li>
@@ -73,7 +73,7 @@ nav_order: 4
         <div class="research-content">
           <h5>Current Projects</h5>
           <p>Developing [specific project description] to address [specific problem].</p>
-          
+
           <h5>Key Publications</h5>
           <ul>
             <li><strong>Title of Paper 3</strong> - Journal/Conference, Year</li>
@@ -100,7 +100,7 @@ nav_order: 4
         <div class="research-content">
           <h5>Current Projects</h5>
           <p>Investigating [specific project description] with applications in [specific domain].</p>
-          
+
           <h5>Key Publications</h5>
           <ul>
             <li><strong>Title of Paper 5</strong> - Journal/Conference, Year</li>
