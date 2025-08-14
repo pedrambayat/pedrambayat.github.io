@@ -11,3 +11,5 @@ assets/libs/
 node_modules/
 vendor
 .idea
+CUSTOMIZATION_GUIDE.md
+ICON_CUSTOMIZATION_GUIDE.md

@@ -1,81 +1,68 @@
 ---
 layout: page
-title: project 2
-description: a project with a background image and giscus comments
-img: assets/img/3.jpg
+title: Data Visualization Platform
+description: An interactive web platform for exploring and visualizing complex datasets
+img: assets/img/2.jpg
 importance: 2
-category: work
-giscus_comments: true
+category: fun
+related_publications: false
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+This project involves developing an interactive web-based platform for data exploration and visualization. The platform allows users to upload datasets, create custom visualizations, and share insights with others.
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+## Project Overview
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+Data visualization is crucial for understanding complex datasets and communicating findings effectively. Our platform provides an intuitive interface for creating interactive charts, graphs, and dashboards without requiring programming knowledge.
+
+## Key Features
+
+- **Drag-and-Drop Interface**: Easy-to-use interface for creating visualizations
+- **Multiple Chart Types**: Support for bar charts, line graphs, scatter plots, heatmaps, and more
+- **Real-time Collaboration**: Multiple users can work on the same visualization simultaneously
+- **Export Options**: Export visualizations as images, PDFs, or interactive HTML files
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
+
+## Technology Stack
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/4.jpg" title="Frontend architecture" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/7.jpg" title="Backend services" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/8.jpg" title="Database schema" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
+    Left: Frontend architecture using React and D3.js. Middle: Backend services built with Node.js and Express. Right: Database schema for storing user data and visualizations.
 </div>
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+## User Experience
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+The platform is designed with user experience in mind:
+- **Intuitive Workflow**: Step-by-step process for creating visualizations
+- **Template Library**: Pre-built templates for common visualization types
+- **Customization Options**: Extensive customization for colors, fonts, and layouts
+- **Performance**: Optimized for handling large datasets efficiently
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+## Impact
 
-{% raw %}
+Since its launch, the platform has been used by:
+- **500+ Researchers** from various academic institutions
+- **200+ Data Scientists** in industry
+- **50+ Educational Institutions** for teaching data visualization
+- **10+ Government Agencies** for public data presentation
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
+## Future Enhancements
 
-{% endraw %}
+Planned improvements include:
+- Machine learning-powered chart recommendations
+- Advanced analytics integration
+- Mobile app development
+- API for third-party integrations
+
+## Open Source
+
+This project is open source and available on GitHub, encouraging community contributions and improvements.

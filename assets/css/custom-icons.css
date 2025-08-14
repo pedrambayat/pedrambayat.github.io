@@ -1,0 +1,63 @@
+/* Custom Icon Sizing and Styling */
+
+/* Social icons on the about page */
+.social .contact-icons {
+  font-size: 2.5rem; /* Default size - you can change this */
+}
+
+/* Specific icon type sizing */
+.social .contact-icons .ai {
+  font-size: 2.2rem; /* Academic icons (ORCID, Google Scholar, etc.) */
+}
+
+.social .contact-icons .fa-brands {
+  font-size: 2.2rem; /* Brand icons (GitHub, LinkedIn, etc.) */
+}
+
+.social .contact-icons .fa-solid {
+  font-size: 2.2rem; /* Solid icons (envelope, briefcase, etc.) */
+}
+
+/* Individual icon customization */
+.social .contact-icons a[title="GitHub"] i {
+  font-size: 2.4rem; /* Make GitHub icon slightly larger */
+}
+
+.social .contact-icons a[title="LinkedIn"] i {
+  font-size: 2.1rem; /* Make LinkedIn icon slightly smaller */
+}
+
+.social .contact-icons a[title="email"] i {
+  font-size: 2.1rem; /* Make email icon smaller */
+}
+
+/* Hover effects */
+.social .contact-icons a:hover i {
+  transform: scale(1.1); /* Slight zoom on hover */
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Responsive sizing for mobile */
+@media (max-width: 768px) {
+  .social .contact-icons {
+    font-size: 2rem; /* Smaller on mobile */
+  }
+  
+  .social .contact-icons .ai,
+  .social .contact-icons .fa-brands,
+  .social .contact-icons .fa-solid {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .social .contact-icons {
+    font-size: 1.5rem; /* Even smaller on very small screens */
+  }
+  
+  .social .contact-icons .ai,
+  .social .contact-icons .fa-brands,
+  .social .contact-icons .fa-solid {
+    font-size: 1.3rem;
+  }
+}
