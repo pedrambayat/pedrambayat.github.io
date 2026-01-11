@@ -69,6 +69,16 @@ ninja.data = [{
           description: "another project with an image 🎉",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project.html";
+            },},{id: "projects-simplified-phase-vocoder",
+          title: 'Simplified Phase Vocoder',
+          description: "Implementation of a simplified phase vocoder system in MATLAB to tune vocal input to the C Major scale. BE 3010 (Signals &amp; Systems).",
+          section: "Projects",handler: () => {
+              window.location.href = "/be3010/";
+            },},{id: "projects-multi-modal-sequence-encoding-for-amps",
+          title: 'Multi-modal Sequence Encoding for AMPs',
+          description: "Benchmarking peptide sequence encoders and multi-modal transfer learning for out-of-distribution generalization. CIS 5200 (Machine Learning).",
+          section: "Projects",handler: () => {
+              window.location.href = "/amp/";
             },},{id: "projects-music-genre-classification",
           title: 'Music Genre Classification',
           description: "Classification model to predict the genre of a Spotify song based on its audio features. Final project for CIS 5450 (Big Data Analytics).",
