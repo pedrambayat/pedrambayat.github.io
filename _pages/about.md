@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: Student @ UPenn. Based in SF & Philly.
+subtitle:
 
 profile:
   align: right
@@ -15,9 +15,9 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 
 announcements:
-  enabled: false # includes a list of news items
+  enabled: true # includes a list of news items
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
+  limit: # leave blank to include all the news in the `_news` folder
 
 latest_posts:
   enabled: false
@@ -25,8 +25,10 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hi, I'm Pedram, a third-year student at the University of Pennsylvania studying bioengineering. I'm interested in using computational and experimental approaches to better understand how biological systems interact and evolve. I strongly believe that the blend between machine learning and biology can provide a novel approach to many questions left unanswered in human health. My research goal is to build computational and wet-lab tools to enhance the design and understanding of biological systems.
+Hi! I'm a student at the University of Pennsylvania studying Bioengineering and Systems Engineering.
 
-For the past few years, I have had the opportunity to explore my interest through various research and project experiences. My journey started in 2023, where I spent a summer learning how to purify proteins in Roger Kornberg's lab at Stanford. I later joined Marco Ruella's lab at Penn, where I have been investigating mechanisms of relapse to CAR-T cell therapy since. I did a brief stint at Hani Goodarzi's lab at Arc Institute, working on single-cell RNA sequencing analysis. Most recently, I have been completing an internship in Genentech's drug discovery department.
+I'm interested in using computation to better understand how biological systems interact and evolve. My research goal is to enhance the design and understanding of biological systems to approach unanswered questions in human health. I'm broadly curious about generative molecular design, agent-assisted biomedical research, perturbation modeling, and maintaining a second brain to think about all of this via the Zettelkasten method.
 
-Through this website, I invite you to learn more about me and the work that I have done, including my [research work]({{ '/publications/' | relative_url }}) and other [projects]({{ '/projects/' | relative_url }}) I've worked on. Please feel free to reach out to me at my [email](mailto:pbayat@seas.upenn.edu) or through [LinkedIn](https://www.linkedin.com/in/pedrambayat/). You can also view my CV [here]({{ '/assets/pdf/cv.pdf' | relative_url }}).
+I currently spend my time researching ML guided protein binder design at Penn Medicine's [Center for Cellular Immunotherapies](https://www.med.upenn.edu/cci/) and investigating solutions to antimicrobial resistance at [Chloropept](https://www.chloropept.bio/). Previously, I spent time at Arc Institute working on single cell RNA sequencing, Genentech working on assay development for novel CAR-Ts, and Stanford learning how to purify proteins.
+
+I'm always open to chat. Feel free to reach me via email, [LinkedIn](https://www.linkedin.com/in/pedrambayat/), or [X](https://x.com/bayat_Pedram).
