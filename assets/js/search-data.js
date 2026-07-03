@@ -83,7 +83,7 @@ ninja.data = [{
           title: 'Computational VHH Binder Design for Tumor-Specific Splice Variants',
           description: "A computational pipeline for designing nanobody binders against spliced neo-antigen proteins expressed on cancer cells but not healthy tissue, built on AlphaFold2-guided gradient descent.",
           section: "Projects",handler: () => {
-              window.location.href = "/snap/";
+              window.location.href = "/vhh-binder-design/";
             },},{
       id: 'light-theme',
       title: 'Change theme to light',
