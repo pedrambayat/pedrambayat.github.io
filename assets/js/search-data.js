@@ -35,48 +35,16 @@ ninja.data = [{
           section: "News",},{id: "news-accepted-into-the-2026-cohort-of-the-widjaja-engineering-entrepreneurship-fellows-program-at-penn",
           title: 'Accepted into the 2026 cohort of the Widjaja Engineering Entrepreneurship Fellows program at...',
           description: "",
-          section: "News",},{id: "news-joined-the-goodman-lab-to-work-on-machine-learning-pipelines-for-protein-design",
-          title: 'Joined the Goodman Lab to work on machine learning pipelines for protein design....',
+          section: "News",},{id: "news-joined-the-goodman-lab-to-work-on-machine-learning-for-protein-design",
+          title: 'Joined the Goodman Lab to work on machine learning for protein design.',
           description: "",
           section: "News",},{id: "news-cart4-34-paper-published-in-science-translational-medicine",
           title: 'CART4-34 paper published in Science Translational Medicine!',
           description: "",
-          section: "News",},{id: "projects-project-3-with-very-long-name",
-          title: 'project 3 with very long name',
-          description: "a project that redirects to another website",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/3_project.html";
-            },},{id: "projects-project-4",
-          title: 'project 4',
-          description: "another without an image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/4_project.html";
-            },},{id: "projects-project-5",
-          title: 'project 5',
-          description: "a project with a background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/5_project.html";
-            },},{id: "projects-project-6",
-          title: 'project 6',
-          description: "a project with no image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/6_project.html";
-            },},{id: "projects-project-7",
-          title: 'project 7',
-          description: "with background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/7_project.html";
-            },},{id: "projects-project-8",
-          title: 'project 8',
-          description: "an other project with a background image and giscus comments",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/8_project.html";
-            },},{id: "projects-project-9",
-          title: 'project 9',
-          description: "another project with an image 🎉",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/9_project.html";
-            },},{id: "projects-simplified-phase-vocoder",
+          section: "News",},{id: "news-started-my-ml-research-internship-at-tahoe-therapeutics",
+          title: 'Started my ML research internship at Tahoe Therapeutics.',
+          description: "",
+          section: "News",},{id: "projects-simplified-phase-vocoder",
           title: 'Simplified Phase Vocoder',
           description: "Implementation of a simplified phase vocoder system in MATLAB to tune vocal input to the C Major scale. BE 3010 (Signals &amp; Systems).",
           section: "Projects",handler: () => {
