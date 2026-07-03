@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Joined the [Goodman Lab](https://goodman-lab.org/) to work on machine learning pipelines for protein design.
+Joined the [Goodman Lab](https://goodman-lab.org/) to work on machine learning for protein design.
