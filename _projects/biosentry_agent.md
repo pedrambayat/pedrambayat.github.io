@@ -1,65 +1,40 @@
 ---
 layout: page
-title: Biosecurity Policy Enforcement for AI Protein Design Agents
+title: "Bio-Sentry: Agent Guardrails"
 permalink: /bio-sentry-agent/
-description: A policy-as-code biosecurity guardrail for AI-driven DNA synthesis agents, built with Cedar policies and the Sondera Harness SDK. Won first place at the Sondera AI hackathon.
-img: assets/img/bio-sentry.png
+description: A hackathon prototype connecting biological sequence screening to policy enforcement at an AI agent's tool-call boundary.
+img: assets/img/projects/biosentry/architecture.svg
 importance: 4
 category: research work
 related_publications: false
 ---
 
-[GitHub](https://github.com/pedrambayat/bio-sentry-agent)
+**2026 · Hackathon prototype · First place at the Sondera AI hackathon**
 
-### The Problem
+[Code and evaluation suite](https://github.com/pedrambayat/bio-sentry-agent)
 
-AI-assisted protein design tools are rapidly closing the gap between knowing a protein's function and being able to synthesize it. The choke point in this pipeline is the DNA synthesis order: companies use biosecurity screening software (BSS) to flag genes encoding proteins of concern before fulfillment. But a 2025 paper in *Science* (Wittmann, Horvitz et al.) showed that this defense is already breaking down. Using freely available generative protein design tools like ProteinMPNN and EvoDiff, the authors generated 76,080 synthetic variants of 72 proteins of concern and sent them through the screening tools used by four major synthesis providers. The tools, which were designed to catch known sequences and their close relatives, largely failed: many high-confidence variants with predicted wild-type-like function passed through undetected. The vulnerability was serious enough that the authors treated it as a biological zero-day and disclosed it to DHS, NIST, OSTP, and the International Gene Synthesis Consortium before publication.
+I built Bio-Sentry to explore a practical question: how should we check an AI agent's actions before letting it request protein synthesis? The prototype screens a sequence, checks the proposed request against a policy, and either blocks it or returns a simulated order response.
 
-The response has been to patch the screening software, and detection rates have improved. But the underlying dynamic is structural: sequence-based screening is reactive, and generative design tools will continue to produce sequences further and further from any known threat. As the paper puts it, "sequence-based biosecurity screening alone is unlikely to remain sufficient."
+My work covered the LangGraph agent, Cedar policies, screening integration, evaluation suite, and FastAPI demo. It was a chance to bring my computational biology background into agent security.
 
-Bio-Sentry addresses a related and compounding problem: what happens when the entity placing the order is not a human but an AI agent. An agent automating synthesis orders can be prompted, manipulated via prompt injection, or simply misconfigured to request dangerous sequences. If the only check is the LLM's own judgment, that check can be bypassed. The guardrail needs to sit below the model, at the tool call level, where it operates on structured data the model cannot rewrite.
+{% include figure.liquid path="assets/img/projects/biosentry/architecture.svg" alt="Bio-Sentry prototype: an agent obtains a screening report, submits order arguments to a Cedar policy check, and receives either a denial or a simulated order response. Screening metadata is supplied by the agent." caption="Cedar checks each proposed order before the tool runs. In this prototype, the agent supplies the screening metadata and the order is simulated." class="img-fluid rounded" %}
 
-### Approach
+### How the prototype works
 
-Bio-Sentry enforces biosecurity policy at the tool call level using Cedar, a policy-as-code language developed by AWS. The enforcement layer intercepts tool calls before they execute and adjudicates them against a defined policy, independent of what the LLM says or believes.
+A LangGraph ReAct agent has two tools. The first compares a protein sequence with a small reference set using Smith–Waterman local alignment and a BLOSUM62 substitution matrix. It returns a similarity score and screening report. The second accepts a proposed synthesis request and returns a simulated order response.
 
-The agent is built as a LangGraph ReAct agent integrated with the Sondera Harness SDK, which provides the Cedar policy enforcement middleware. The middleware runs in `STEER` mode: when a tool call is denied, the reason is injected back into the model's context, steering it toward compliance rather than simply blocking it silently.
+The Sondera Harness SDK intercepts the second tool at its `PRE_TOOL` checkpoint. Cedar evaluates a structured policy: low-scoring requests are permitted, intermediate-scoring requests are denied when their submitted approval flag is false, and high-scoring requests are denied. In `STEER` mode, a denial is returned to the agent with an explanation so it can respond to the policy decision. A separate `POST_TOOL` rule checks response text for a flagged verdict.
 
-The pipeline is two tools:
+Keeping the policy separate from the prompt made it easier to inspect and test. But it also made a weakness in the design clear: the policy still has to trust the data it receives.
 
-1. `biosecurity_screener` — takes a protein sequence and computes its maximum homology score against a threat database (Ricin A-Chain, Abrin A-Chain, Shiga Toxin 1A) using Smith-Waterman local alignment with a BLOSUM62 substitution matrix. Returns a normalized score, the threat name, and a verdict.
+### Testing the guardrail
 
-2. `synthesis_order` — places the order with a synthesis provider. Intercepted by the Cedar policy before execution.
+I wrote **24 offline cases** covering policy behavior and screening, including one informational case, plus three integration cases for the full LLM workflow.
 
-The Cedar policy enforces a three-tier risk model based on the homology score passed as a tool parameter:
+The tests expose an important gap: the agent supplies both the screening score and the approval flag. Cedar can enforce a rule on those values, but it cannot tell whether they came from the screener or a person. That leaves the prototype vulnerable to misleading inputs.
 
-- Green (score up to 250): permit automatically
-- Amber (251 to 400): require explicit human approval
-- Red (above 400): deny unconditionally
+### What I took away
 
-Because Cedar reads the score directly from the tool call parameters rather than from the LLM's reasoning, a model cannot fabricate a passing score to bypass enforcement.
+The next step would be to verify the screening result and human approval on the server and tie them to the exact sequence being ordered. The screener also uses a small reference set, and the demo has no connection to a synthesis provider. Building it taught me that writing a policy is only part of the job; making sure it acts on trustworthy information is just as important.
 
-### Evaluation
-
-The eval suite has three tiers:
-
-- Cedar-direct tests (14 cases): test the policy layer in isolation, no LLM involved. Covers boundary conditions at 250/251 and 400/401, amber/red behavior, and POST_TOOL audit logging.
-- Screener unit tests (10 cases): validate the alignment scoring against known sequences (GFP scores 0.048, exact Ricin scores near 1.0), case normalization, and integer scaling.
-- Integration tests (3 cases): run full prompts through the agent and check for correct block/allow outcomes.
-
-All 24 tests pass.
-
-### What I Learned
-
-This was my first time working with policy-as-code and thinking seriously about AI agent security. The core insight is that LLM-level safety measures are brittle because they operate in the same reasoning layer that can be manipulated. Enforcement needs to happen at a layer the model cannot reach. Cedar makes this concrete: the policy is evaluated against structured data extracted from tool calls, not against natural language.
-
-Working with the Sondera Harness SDK gave me hands-on experience with a real agent governance framework, and the hackathon context meant building and iterating fast. Winning was a bonus.
-
-### Skills Used
-
-- LangGraph ReAct agent architecture
-- Cedar policy-as-code (policy authoring, schema design)
-- Sondera Harness SDK (CedarPolicyHarness, SonderaHarnessMiddleware)
-- Smith-Waterman local alignment, BLOSUM62 (Biopython)
-- LLM agent security and adversarial robustness
-- Python, FastAPI
+**Tools:** Python, LangGraph, Cedar, Sondera Harness SDK, Biopython, FastAPI.

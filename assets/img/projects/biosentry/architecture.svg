@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="486pt" height="273.375pt" viewBox="0 0 486 273.375" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-01T18:27:25.654807</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 273.375
+L 486 273.375
+L 486 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 21.384 105.52275
+L 146.043 105.52275
+Q 152.9685 105.52275 152.9685 101.627156
+L 152.9685 39.297656
+Q 152.9685 35.402063 146.043 35.402063
+L 21.384 35.402063
+Q 14.4585 35.402063 14.4585 39.297656
+L 14.4585 101.627156
+Q 14.4585 105.52275 21.384 105.52275
+z
+" clip-path="url(#pce95cf467c)" style="fill: #f3f5f7; stroke: #52616e; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 182.979 105.52275
+L 307.638 105.52275
+Q 314.5635 105.52275 314.5635 101.627156
+L 314.5635 39.297656
+Q 314.5635 35.402063 307.638 35.402063
+L 182.979 35.402063
+Q 176.0535 35.402063 176.0535 39.297656
+L 176.0535 101.627156
+Q 176.0535 105.52275 182.979 105.52275
+z
+" clip-path="url(#pce95cf467c)" style="fill: #f3f5f7; stroke: #52616e; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 344.574 105.52275
+L 464.616 105.52275
+Q 471.5415 105.52275 471.5415 101.627156
+L 471.5415 39.297656
+Q 471.5415 35.402063 464.616 35.402063
+L 344.574 35.402063
+Q 337.6485 35.402063 337.6485 39.297656
+L 337.6485 101.627156
+Q 337.6485 105.52275 344.574 105.52275
+z
+" clip-path="url(#pce95cf467c)" style="fill: #edf5fa; stroke: #0072b2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 157.279579 71.760938
+Q 164.974217 71.760938 171.439018 71.760938
+" clip-path="url(#pce95cf467c)" style="fill: none; stroke: #52616e; stroke-width: 1.1; stroke-linecap: round"/>
+    <path d="M 167.039018 69.560938
+L 171.439018 71.760938
+L 167.039018 73.960938
+z
+" clip-path="url(#pce95cf467c)" style="fill: #52616e; stroke: #52616e; stroke-width: 1.1; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 318.874579 71.760938
+Q 326.569217 71.760938 333.034018 71.760938
+" clip-path="url(#pce95cf467c)" style="fill: none; stroke: #52616e; stroke-width: 1.1; stroke-linecap: round"/>
+    <path d="M 328.634018 69.560938
+L 333.034018 71.760938
+L 328.634018 73.960938
+z
+" clip-path="url(#pce95cf467c)" style="fill: #52616e; stroke: #52616e; stroke-width: 1.1; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 180.6705 237.972937
+L 307.638 237.972937
+Q 314.5635 237.972937 314.5635 234.077344
+L 314.5635 174.344906
+Q 314.5635 170.449312 307.638 170.449312
+L 180.6705 170.449312
+Q 173.745 170.449312 173.745 174.344906
+L 173.745 234.077344
+Q 173.745 237.972937 180.6705 237.972937
+z
+" clip-path="url(#pce95cf467c)" style="fill: #f3f5f7; stroke: #52616e; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 344.574 237.972937
+L 464.616 237.972937
+Q 471.5415 237.972937 471.5415 234.077344
+L 471.5415 174.344906
+Q 471.5415 170.449312 464.616 170.449312
+L 344.574 170.449312
+Q 337.6485 170.449312 337.6485 174.344906
+L 337.6485 234.077344
+Q 337.6485 237.972937 344.574 237.972937
+z
+" clip-path="url(#pce95cf467c)" style="fill: #edf5fa; stroke: #0072b2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 244.15425 162.062753
+Q 244.15425 164.608283 244.15425 165.923975
+" clip-path="url(#pce95cf467c)" style="fill: none; stroke: #52616e; stroke-width: 1.1; stroke-linecap: round"/>
+    <path d="M 246.35425 161.523975
+L 244.15425 165.923975
+L 241.95425 161.523975
+z
+" clip-path="url(#pce95cf467c)" style="fill: #52616e; stroke: #52616e; stroke-width: 1.1; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 404.595 149.077917
+Q 404.595 158.112176 404.595 165.916598
+" clip-path="url(#pce95cf467c)" style="fill: none; stroke: #52616e; stroke-width: 1.1; stroke-linecap: round"/>
+    <path d="M 406.795 161.516598
+L 404.595 165.916598
+L 402.395 161.516598
+z
+" clip-path="url(#pce95cf467c)" style="fill: #52616e; stroke: #52616e; stroke-width: 1.1; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 404.595 106.821281
+L 404.595 147.07575
+L 244.15425 147.07575
+L 244.15425 162.658125
+" clip-path="url(#pce95cf467c)" style="fill: none; stroke: #52616e; stroke-width: 1.1; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'TeX Gyre Heros', 'Nimbus Sans', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #26323b" x="83.7135" y="64.503938" transform="rotate(-0 83.7135 64.503938)">Screening tool</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 10px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'TeX Gyre Heros', 'Nimbus Sans', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #52616e" x="83.7135" y="86.706359" transform="rotate(-0 83.7135 86.706359)">Sequence alignment</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'TeX Gyre Heros', 'Nimbus Sans', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #26323b" x="245.3085" y="64.402688" transform="rotate(-0 245.3085 64.402688)">Agent request</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 10px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'TeX Gyre Heros', 'Nimbus Sans', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #52616e" x="245.3085" y="86.706359" transform="rotate(-0 245.3085 86.706359)">Score + approval flag</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'TeX Gyre Heros', 'Nimbus Sans', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #26323b" x="404.595" y="64.414875" transform="rotate(-0 404.595 64.414875)">Policy check</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 10px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'TeX Gyre Heros', 'Nimbus Sans', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #52616e" x="404.595" y="86.682141" transform="rotate(-0 404.595 86.682141)">Cedar / Sondera</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 10px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'TeX Gyre Heros', 'Nimbus Sans', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #52616e" x="245.3085" y="127.525719" transform="rotate(-0 245.3085 127.525719)">Agent-supplied metadata</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'TeX Gyre Heros', 'Nimbus Sans', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #26323b" x="244.15425" y="198.587183" transform="rotate(-0 244.15425 198.587183)">Denied</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 10px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'TeX Gyre Heros', 'Nimbus Sans', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #52616e" x="244.15425" y="219.82532" transform="rotate(-0 244.15425 219.82532)">Reason to the agent</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'TeX Gyre Heros', 'Nimbus Sans', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #26323b" x="404.595" y="198.587183" transform="rotate(-0 404.595 198.587183)">Permitted</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 10px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'TeX Gyre Heros', 'Nimbus Sans', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #52616e" x="404.595" y="219.885476" transform="rotate(-0 404.595 219.885476)">Simulated order</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 11px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'TeX Gyre Heros', 'Nimbus Sans', 'Liberation Sans', 'DejaVu Sans', sans-serif; fill: #52616e" transform="translate(39.403266 200.068938)">Policy runs before</text>
+    <text style="font-size: 11px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'TeX Gyre Heros', 'Nimbus Sans', 'Liberation Sans', 'DejaVu Sans', sans-serif; fill: #52616e" transform="translate(50.704906 214.128312)">the order tool</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pce95cf467c">
+   <rect x="12.15" y="6.834375" width="461.7" height="259.70625"/>
+  </clipPath>
+ </defs>
+</svg>

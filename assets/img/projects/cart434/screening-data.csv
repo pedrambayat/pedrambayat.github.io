@@ -1,0 +1,5 @@
+condition,egfr_positive_percent,source
+Control (no enhancer; no RetroNectin),13.6,CURF 2024 poster Figure VI control caption
+RetroNectin only,18.7,CURF 2024 poster Figure VI control caption
+P407 only,23.2,CURF 2024 poster Figure VI panel A without RetroNectin
+RetroNectin + P407,35.6,CURF 2024 poster Figure VI panel A with RetroNectin

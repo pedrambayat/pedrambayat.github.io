@@ -1,41 +1,51 @@
 ---
 layout: page
-title: CAR T Cell Therapy Targeting IGHV4-34 B Cell Malignancies
+title: CART4-34 Manufacturing
 permalink: /cart434-transduction/
-description: Contributed to the development of CART4-34, a precision CAR T cell therapy targeting IGHV4-34+ B cell malignancies, published in Science Translational Medicine (2026). My work focused on solving a transduction efficiency bottleneck in CAR T cell manufacturing.
-img: assets/img/publication_preview/cart434.png
+description: Improving lentiviral transduction for a selective CAR T cell therapy, with reagent screening and follow-up cell expansion.
+img: assets/img/projects/cart434/transduction-screening.svg
 importance: 2
 category: research work
 related_publications: false
 ---
 
-This project was part of the work published in [Science Translational Medicine](https://www.science.org/doi/abs/10.1126/scitranslmed.adr9382) in February 2026, conducted during my time in the Ruella Lab at the Center for Cellular Immunotherapies at Penn.
+**2024–2026 · Published in Science Translational Medicine**
 
-### The Paper
+[Paper](https://www.science.org/doi/10.1126/scitranslmed.adr9382) · [Research poster]({{ '/assets/pdf/curf_poster.pdf' | relative_url }})
 
-Current CAR T cell therapies for B cell malignancies target CD19, an antigen expressed across the entire B cell lineage. This causes on-target, off-tumor depletion of healthy B cells, leaving patients immunocompromised, and creates a route for relapse when tumor cells downregulate CD19.
+CART4-34 is an experimental CAR T cell approach that recognizes **IGHV4-34**, a variable region of the B cell receptor enriched in certain B cell cancers and autoimmune disease. The project aimed to target these pathogenic cells more selectively than CD19-directed therapies, which also deplete much of the healthy B cell population. At Penn's Center for Cellular Immunotherapies, I worked on a practical part of that effort: producing enough engineered T cells for the study.
 
-This work presents CART4-34, a CAR T cell therapy that targets the IGHV4-34 B cell receptor instead. Because IGHV4-34 is highly enriched on malignant B cells and largely absent from the healthy B cell pool, CART4-34 can eliminate tumor cells with much greater precision while sparing normal B cells. The study demonstrates its specific cytotoxicity toward IGHV4-34+ malignant B cells in vitro, robust antitumor activity in xenograft mouse models, improved immune synapse morphology through CAR hinge domain optimization, and the ability to target patient-derived Systemic Lupus Erythematosus (SLE) B cells ex vivo without depleting healthy B cells or affecting total IgG levels.
-### My Contribution
+The broader study demonstrated selective killing of IGHV4-34-positive malignant cells, antitumor activity in mouse models, and targeting of patient-derived lupus B cells outside the body. Shorter CAR hinges improved the contact interface between T cells and their targets. CART4-34 largely preserved the IGHV4-34-negative healthy B cell population; it also depleted the small IGHV4-34-positive subset found in healthy donors. These were preclinical findings.
 
-My work focused on solving a manufacturing bottleneck that needed to be resolved before CART4-34 could be used in the more advanced experiments described in the paper. The issue was transduction efficiency: the step where a lentiviral vector delivers the CAR construct into T cells. Low transduction efficiency meant most T cells in a batch were not expressing the CAR, which undermined downstream experiments and posed a real obstacle to clinical translation.
+### My contribution
 
-To address this, I systematically tested commercially available transduction efficiency boosters with and without RetroNectin. RetroNectin is a recombinant protein that co-localizes lentiviral particles and T cells on the same surface via the VLA-4 integrin receptor and a heparin binding domain, increasing the chance of successful viral entry. The boosters tested were Poloxamer 407 (P407), beta-mercaptoethanol (BME), Polybrene, and LentiBOOST. Transduction efficiency was measured using a truncated EGFR reporter gene in the CART4-34 construct, detected by flow cytometry with an anti-EGFR antibody, across eight total conditions.
+My work focused on **lentiviral transduction**, the step that introduces the CAR gene into T cells. Too few cells were expressing the receptor, so I looked for ways to improve that step. I screened transduction-enhancing reagents, measured reporter expression by flow cytometry, and followed cell growth under the selected conditions.
 
-RetroNectin combined with Poloxamer 407 produced the highest transduction efficiency at 35.6% EGFR positivity, compared to 13.6% without RetroNectin and 18.7% with RetroNectin alone. P407 is a nonionic surfactant hypothesized to reduce electrostatic repulsion between the negatively charged T cells and lentiviral particles, complementing the physical co-localization that RetroNectin provides. A subsequent 16-day CART4-34 expansion under the optimized conditions showed strong sustained growth and high EGFR positivity throughout, validating the protocol for use in the larger study.
+The screen compared Poloxamer 407 (P407), beta-mercaptoethanol, Polybrene, and LentiBOOST, each with and without RetroNectin. RetroNectin brings viral particles and target cells into proximity. The CAR construct included a truncated EGFR reporter, allowing the fraction of EGFR-positive cells to serve as a readout of successful gene delivery and expression.
 
-This work was presented as a poster at the University of Pennsylvania CURF Fall Research Expo in September 2024 and was ultimately instrumental in the subsequent work that led to the STM publication.
+### Screening result
 
-### Publication and Poster
+**RetroNectin plus P407 reached 35.6% EGFR positivity**, the highest value reported among the tested enhancer conditions. The no-enhancer control without RetroNectin was 13.6%, the RetroNectin-only control was 18.7%, and P407 without RetroNectin reached 23.2%. The combination outperformed either reagent alone in this screen.
 
-[Chimeric antigen receptor T cells against the IGHV4-34 B cell receptor specifically eliminate neoplastic and autoimmune B cells](https://www.science.org/doi/abs/10.1126/scitranslmed.adr9382)
-Cohen, Bochi-Layec, Lemoine, Jenks, Bayat et al. Science Translational Medicine, 2026.
+<div class="row justify-content-sm-center">
+  <div class="col-sm-10">
+    {% include figure.liquid path="assets/img/projects/cart434/transduction-screening.svg" alt="EGFR positivity of 13.6 percent for control, 18.7 percent for RetroNectin only, 23.2 percent for P407 only, and 35.6 percent for their combination" class="img-fluid rounded" caption="RetroNectin plus P407 gave the highest EGFR positivity in the screen. The poster reports these percentages without replicate counts or uncertainty estimates." %}
+  </div>
+</div>
 
-[Poster]({{ '/assets/pdf/curf_poster.pdf' | relative_url }}) — Penn CURF Fall Research Expo, 2024.
+P407 is a nonionic surfactant. The poster proposed that reduced repulsion between viral particles and cells might complement RetroNectin's proximity effect, but the experiment did not establish that mechanism.
 
-### Skills Used
+### Following the cells over time
 
-- CAR T cell manufacturing and lentiviral transduction
-- Flow cytometry (EGFR reporter assay)
-- Cell culture and expansion protocols
-- Experimental design and data analysis
+A subsequent expansion using RetroNectin and P407 showed continued cell growth through **day 16**, with EGFR positivity tracked on **days 5–11**. That gave us a useful condition to carry into later experiments.
+
+I presented this work at Penn's CURF Fall Research Expo in September 2024. It became part of the broader collaborative study published in 2026.
+
+**Tools and methods:** CAR T cell culture, lentiviral transduction, reagent screening, flow cytometry, reporter-based expression analysis, and cell expansion.
+
+{% comment %}
+Sources: assets/pdf/curf_poster.pdf, Figure VI (screening and control caption) and Figure VII (growth to day 16; EGFR days 5–11).
+Publication: doi:10.1126/scitranslmed.adr9382, 4 February 2026; healthy-donor subset results in Figure 5.
+Personal role corroborated by local Career/Misc Applications/Arc Fellows/Arc Reflection.md and Merck BPRD.md.
+Chart source and transcribed evidence are stored beside transduction-screening.svg.
+{% endcomment %}

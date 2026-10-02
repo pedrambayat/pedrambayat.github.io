@@ -1,60 +1,58 @@
 ---
 layout: page
-title: Reference-free Cell Type Annotation with LLM Agents
+title: LLM Cell-Type Annotation
 permalink: /reference-free-cell-annotation/
-description: An LLM agent framework for automated, reference-free cell type annotation in high-resolution spatial transcriptomics data. Published at ICLR 2025 Workshop on Machine Learning for Genomics Explorations (MLGenX).
-img: assets/img/publication_preview/mlgenx.png
+description: Benchmarking LLM agents for reference-free cell-type annotation, with explicit checks for workflow failures and hallucinations.
+img: assets/img/projects/cell-annotation/reliability.svg
 importance: 3
 category: research work
 related_publications: false
 ---
 
-### Overview
+**2025 · ICLR MLGenX workshop paper · Penn Immune Health Hackathon winner**
 
-A key bottleneck in analyzing single-cell and spatial transcriptomics data is cell type annotation: assigning biological identities to clusters of cells based on their gene expression patterns. The standard workflow requires manually constructing expression signatures and cross-referencing them against curated reference atlases, a process that is slow, labor-intensive, and dependent on expert domain knowledge. Reference atlases may also be unavailable or poorly matched for novel tissues, disease states, or non-model organisms.
+[Paper](https://openreview.net/pdf?id=kD8LptrZ7v) · [OpenReview](https://openreview.net/forum?id=kD8LptrZ7v) · [Poster]({{ '/assets/pdf/mlgenx_poster.pdf' | relative_url }})
 
-This project presents a reference-free approach. Rather than comparing against a fixed atlas, we design a general-purpose bioinformatics LLM agent that autonomously plans and executes its own analysis, querying scientific literature and reasoning from marker genes to assign biologically meaningful cell type labels.
+I benchmarked LLM agents that assign cell-type labels to clustered spatial gene-expression data without a fixed reference atlas. I ran the model comparisons and reviewed their outputs: did they finish, did they use the data, and did their labels agree with expert annotations? We wanted to see how much of the analysis an agent could handle with minimal guidance.
 
-### Agent Design
+### From expression data to labels
 
-The agent is built using the [ag2](https://github.com/ag2ai/ag2) library as a single-backbone LLM augmented with tool use and code execution. It is given only a high-level, task-agnostic system prompt with no transcriptomics-specific instructions. The prompt directs it to explore the data by writing and executing Python code, formulate a step-by-step analysis plan, and summarize findings once results are obtained.
+The system uses a single LLM agent built with **ag2**, combining local Python execution with tools for querying PubMed and NCBI Entrez. Its system prompt gives a general workflow: explore the dataset, formulate and execute a plan, then summarize findings. The same prompts were used with Claude 3.5 Sonnet, o3-mini with high reasoning, and GPT-4o.
 
-The agent has access to four tools wrapping NCBI Entrez EUtils (`get_pubmed_abstracts`, `esearch`, `efetch`, and `esummary`), allowing it to query PubMed for literature on marker genes in real time. Code is executed locally, with outputs returned to the agent in the next message. No user interaction is required after the initial goal specification.
+We gave each agent **precomputed differential-expression data for each cluster**, the tissue identity, and a request for cell-type labels. It could use its biological knowledge or search PubMed, but received no further help during the run. Here, reference-free means that we did not supply a fixed annotation atlas.
 
-### Evaluation
+### Evaluating the workflow
 
-We evaluated the agent on three Visium HD spatial transcriptomics datasets from 10x Genomics: a human tonsil with reactive follicular hyperplasia, a healthy mouse kidney, and a healthy mouse brain. For each dataset, k-means clustering (k=10) was applied to the raw expression data using the 10x Genomics Loupe browser. The resulting cluster-level differential expression file was passed to the agent, which was asked simply: "What cell type is represented by each cluster?"
+The benchmark covered three 10x Genomics Visium HD datasets: human tonsil with reactive follicular hyperplasia, healthy mouse kidney, and healthy mouse brain. Each was divided into ten clusters using k-means in Loupe Browser. We made **five attempts per model per dataset**, giving 45 attempts overall.
 
-Each agent was run five times per dataset to assess stability and hallucination rates. Ground truth labels were determined by human pathologists with access to both gene expression data and histology images. Predictions were scored on a 4-point ordinal scale, where 1 indicates complete misalignment and 4 indicates perfect alignment.
+A run counted as complete when its final message contained ten cluster labels. A completed run was flagged as hallucinated when the conversation showed that its labels were not appropriately derived from the supplied data. Common failures included plausible sample labels based only on the tissue and labels inferred from invented gene signatures. Coarse but data-grounded labels instead received lower alignment scores.
 
-### LLM Benchmarking
+{% include figure.liquid path="assets/img/projects/cell-annotation/reliability.svg" alt="Stacked bars for fifteen attempts per model: Claude has twelve completed without flagged hallucination, two hallucinated, and one incomplete; o3-mini has eleven, four, and zero; GPT-4o has three, zero, and twelve." title="Agent workflow outcomes" class="img-fluid rounded" %}
 
-We implemented the agent with three frontier LLMs and compared their performance: Claude 3.5 Sonnet, o3-mini (high reasoning), and GPT-4o.
+<div class="caption">
+  Outcomes from 15 attempts per model—five on each dataset. These are counts, without error bars; a completed, data-grounded answer can still contain incorrect labels.
+</div>
 
-| Model | Tonsil (Avg Score) | Kidney (Avg Score) | Brain (Avg Score) |
-|---|---|---|---|
-| Claude 3.5 Sonnet | 3.6 | 3.8 | 3.5 |
-| o3-mini high | 3.6 | 3.6 | 3.5 |
-| GPT-4o | 2.4 | 2.6 | — |
+### How well did the labels match?
 
-Claude 3.5 Sonnet and o3-mini consistently completed the task with high accuracy across all three tissues. GPT-4o was considerably weaker, completing only 3 out of 15 total runs and producing coarser, less specific labels. Hallucinations occurred in 19% of completed runs across all models, with two common failure modes: tissue-level labels instead of specific cell types, and labels derived from dummy gene signatures rather than the actual data.
+Human pathologists established reference labels using expression data and histology; the agents had no histology images. Predictions were manually rated on an **ordinal scale from 1 to 4**, from complete misalignment to perfect alignment. The table reports mean cluster scores **only for completed runs without flagged hallucinations**; parentheses give the number of qualifying runs, each containing ten labels.
 
-The agents demonstrated surprisingly human-like reasoning. For example, Claude correctly identified POU2AF1 as a marker of germinal center B cells in the tonsil, and recognized that upregulation of histone genes HIST1H1B and HIST1H1C indicated high proliferation rates, consistent with the known biology of germinal center B cells. On kidney data, the agent correctly called Cluster 1 "Thick Ascending Limb (TAL) of Loop of Henle" based on established markers Slc12a1 (NKCC2) and Umod (Uromodulin).
+<div class="table-responsive" markdown="1">
 
-### My Contributions
+| Model | Tonsil | Kidney | Brain |
+| :--- | ---: | ---: | ---: |
+| Claude 3.5 Sonnet | 3.6 (4) | 3.8 (3) | 3.5 (5) |
+| o3-mini high | 2.6 (4) | 3.6 (3) | 3.5 (4) |
+| GPT-4o | 2.4 (2) | 2.6 (1) | — (0) |
 
-My work on this project centered on the LLM benchmarking pipeline: systematically evaluating how Claude 3.5 Sonnet, o3-mini, and GPT-4o performed on the cell type annotation task across all three tissue datasets. This involved running each model multiple times per dataset, collecting outputs, and assessing completion rates, hallucination patterns, and annotation quality against expert ground truth.
+</div>
 
-Working on this project gave me hands-on experience writing and iterating on system prompts for LLM agents. Crafting a prompt that was task-agnostic yet effective enough to guide a model through multi-step bioinformatics reasoning was genuinely challenging. Seeing how small changes in prompt structure could dramatically affect agent behavior got me interested in LLM agents more broadly, and that interest has shaped a lot of my work since.
+Six of the 32 completed runs contained hallucinations, about 19%. Looking only at the label scores would have missed both those failures and the runs that never finished.
 
-### Skills Used
+### What I learned
 
-- LLM agent design and evaluation (ag2, tool use, code execution)
-- System prompt engineering
-- Spatial transcriptomics (10x Visium HD, Loupe browser)
-- Benchmarking frontier LLMs (Claude, GPT-4o, o3-mini)
-- Python, NCBI Entrez EUtils, PubMed API
+This was a small study of three datasets with manual scoring, so broader comparisons with established annotation methods are still needed. What stayed with me was how convincing an answer could look even when the agent had barely used the data. Reviewing the analysis behind each answer was as important as scoring the labels themselves.
 
-*This work earned the first place prize at the 2025 Penn Immune Health Hackathon and was presented at ICLR 2025 Workshop on Machine Learning for Genomics Explorations (MLGenX). Check it out here:*
-
-[Paper](https://openreview.net/pdf?id=kD8LptrZ7v) \| [OpenReview](https://openreview.net/forum?id=kD8LptrZ7v)
+<!-- Figure and table: paper Table 1, page 3; workflow definitions: section 3.2.
+Figure source data and regeneration script live in assets/img/projects/cell-annotation/.
+The o3-mini tonsil mean is 2.6; 3.6 is its best-run score, not the mean. -->

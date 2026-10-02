@@ -1,0 +1,6 @@
+evaluation,condition,n,pass_ge_05,median_iptm
+Design time,selected cohort,350,350,0.65285
+AlphaFold 3,crop without homologous MSAs or templates,350,3,0.12
+Protenix,crop without homologous MSAs or templates,350,4,0.17671000957489008
+AlphaFold2-Multimer,crop without homologous MSAs or templates,350,0,0.09
+Chai-1,crop without homologous MSAs or templates,350,52,0.2336353808641433

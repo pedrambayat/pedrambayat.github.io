@@ -1,0 +1,10 @@
+model,tissue,attempts,completed,hallucinated,mean_alignment,best_alignment
+Claude 3.5 Sonnet,Tonsil,5,5,1,3.6,3.7
+Claude 3.5 Sonnet,Kidney,5,4,1,3.8,3.8
+Claude 3.5 Sonnet,Brain,5,5,0,3.5,3.5
+o3-mini (high),Tonsil,5,5,1,2.6,3.6
+o3-mini (high),Kidney,5,5,2,3.6,3.7
+o3-mini (high),Brain,5,5,1,3.5,3.5
+GPT-4o,Tonsil,5,2,0,2.4,2.8
+GPT-4o,Kidney,5,1,0,2.6,2.6
+GPT-4o,Brain,5,0,0,,

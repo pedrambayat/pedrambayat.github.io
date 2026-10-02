@@ -1,65 +1,46 @@
 ---
 layout: page
-title: "Computational VHH Binder Design for Tumor-Specific Splice Variants"
+title: VHH Design and Evaluation
 permalink: /vhh-binder-design/
-description: A computational pipeline for designing nanobody binders against spliced neo-antigen proteins expressed on cancer cells but not healthy tissue, built on AlphaFold2-guided gradient descent.
-img: assets/img/vhh-binder-design.png
+description: Designing VHH candidates for CAR T cells and testing whether their predicted confidence and binding surfaces survive re-evaluation.
+img: assets/img/projects/vhh-evaluation/confidence-retention.svg
 importance: 1
 category: research work
 related_publications: false
 ---
 
-### The Problem
+**2026 · Computational study and construct development**
 
-Most CAR T cell therapies target antigens shared between tumor cells and normal tissue, which causes on-target, off-tumor toxicity. A more precise approach is to target tumor-specific splice variants: proteins where cancer cells include an exon that healthy cells leave out. A binder that recognizes the exon-inclusion isoform while ignoring the exon-exclusion isoform on normal tissue gains a specificity that antigen-level targeting simply cannot reach. The neural adhesion molecule CHL1 is a clean example — it carries an alternatively spliced exon that is retained in pediatric neuroblastoma but excluded in healthy neural tissue, creating exactly the kind of tumor-restricted neoepitope this work is built to exploit.
+I'm designing single-domain antibodies, or VHHs, for use as the antigen-binding part of CAR T cells. Much of my work asks what happens after a model proposes a promising sequence: does it still look promising when we evaluate it another way?
 
-The hard part is computational. Designing a binder de novo against a specific surface epitope on a specific protein isoform requires two things that are both harder than they look: a sequence design engine capable of proposing candidates, and an evaluation method honest enough to tell you whether those candidates actually bind where you intended.
+I built the design and evaluation workflow around existing models, from choosing target sites and running predictions to comparing the surfaces each binder was predicted to contact. I also worked on turning selected sequences into experimental constructs.
 
-### Approach
+### From design to separate evaluation
 
-The design engine is built on [mBER](https://github.com/manifoldbio/mber-open) (Manifold Binder Engineering and Refinement), an open-source antibody-design framework from Manifold Bio. It performs iterative sequence optimization guided by AlphaFold2-Multimer, using JAX to backpropagate gradients through a loss that combines inter-chain contacts, interface pTM and PAE, radius of gyration, and structural-quality terms. Its output is VHH nanobody sequences optimized to engage user-specified hotspot residues on the target. Across the project, targets included CD19, CHL1 splice variants, mesothelin (MSLN), and EpCAM.
+Using [mBER](https://github.com/manifoldbio/mber-open), an AlphaFold2-Multimer-guided VHH design framework, the campaign generated **6,047 unique sequences** across five targets: EpCAM, mesothelin, B7-H3, PSMA, and CD19. Four intended binding sites per target gave 20 design sites in total.
 
-The more interesting contribution, and the focus of this page, is what it took to trust the designs the engine produced.
+I evaluated a confidence-stratified subset of **350 designs** spanning all 20 sites: 100 each for EpCAM and CD19, and 50 each for the other targets. All had reached a design-time interface confidence score, ipTM, of at least 0.5. This was a study of promising-looking candidates, rather than a representative sample of everything generated.
 
-### A Standalone Evaluation Pipeline
+Each VHH–antigen complex was predicted again with **AlphaFold 3, Protenix, AlphaFold2-Multimer, and Chai-1**. The primary comparison supplied the same antigen crop used during design, without homologous sequence alignments or structural templates. This let me test the designs without the structural guidance they had received during optimization.
 
-Evaluation in most binder-design workflows is tightly coupled to the design loop — you cannot score a sequence without first rebuilding the entire optimization state around it. I built a standalone evaluation library that breaks that coupling: given a VHH sequence and a target structure, it returns a full interface assessment independently of how (or whether) the sequence was designed. Concretely, it:
+### High design confidence did not consistently persist
 
-1. Runs AlphaFold2-Multimer in **hallucination mode** — the model receives only the target structure and must predict the binder from sequence alone, with no template hint about where it should dock. This is the most stringent signal available.
-2. Computes buried surface area (BSA) via FreeSASA to quantify interface size.
-3. Maps CDR loop contacts using Chothia-numbered CDR definitions to identify which complementarity-determining regions actually engage the target.
-4. Computes interface RMSD and contact Jaccard similarity against reference crystal structures where available.
-5. Scores sequence naturalness via ESM2 pseudo-perplexity.
+Only **3, 4, 0, and 52 of the 350 designs**, respectively, reached ipTM 0.5 on re-evaluation. The median score fell from 0.653 during design to 0.090–0.234 across the four predictors. **295 designs fell below the threshold in all four**, and none reached it in all four.
 
-Designs are then classified as PASS (BSA > 600 Å² and ≥ 3 CDRs engaged), MARGINAL, WEAK, or FAIL. Decoupling evaluation from design makes three things possible that the coupled workflow does not: re-scoring existing binders under new model configurations, benchmarking arbitrary known antibodies, and running batch CSV-in / CSV-out screening campaigns that resume gracefully after failures.
+{% include figure.liquid path="assets/img/projects/vhh-evaluation/confidence-retention.svg" alt="All 350 selected designs reached ipTM 0.5 during design. On re-evaluation, 3 reached it with AlphaFold 3, 4 with Protenix, 0 with AlphaFold2-Multimer, and 52 with Chai-1." caption="Confidence dropped on re-evaluation of 350 designs selected for ipTM ≥ 0.5. Each predictor received the design antigen crop without homologous alignments or templates. One output per design and predictor is shown, without repeated-seed uncertainty; the scores measure model confidence, not binding." class="img-fluid rounded" %}
 
-### Benchmark: What AF2-Multimer Actually Tells You
+[Figure PDF]({{ '/assets/img/projects/vhh-evaluation/confidence-retention.pdf' | relative_url }}) · [Aggregate data]({{ '/assets/img/projects/vhh-evaluation/confidence-summary.csv' | relative_url }})
 
-Before trusting any of these metrics, I ran a systematic benchmark to characterize what AlphaFold2-Multimer confidence scores really measure for antibody–antigen complexes — because if they measure the wrong thing, the whole pipeline rests on sand.
+### The inputs change the predicted interface
 
-The benchmark spans 7 positive crystal structures and 6 negative controls across 4 targets (MSLN, CD22, EpCAM, CD19), testing three questions:
+Confidence was only one part of the analysis. I compared which antigen residues contacted each VHH, using Jaccard similarity to measure overlap and averaging the six predictor-pair comparisons per design.
 
-- **Structure recovery:** does AF2-M reproduce the known crystal pose?
-- **CDR-scramble controls:** do CDR-shuffled sequences (identical framework, randomized CDR sequences) score differently from the originals?
-- **Wrong-target controls:** does a correct antibody, scored against the wrong target, produce distinguishable metrics?
+Holding the full antigen ectodomain fixed, removing the target sequence alignment reduced agreement for **294 of 350 designs**. With alignments absent, restricting the antigen to the design crop increased agreement for **291 of 350**. Simply changing the information supplied to the models changed where they predicted binding. Restricting the available surface made them agree more, but that alone doesn't tell us which pose is right.
 
-The results were unambiguous. All 6 wrong-target negatives and all 20 CDR-scrambled variants passed the standard biophysical filters (iPTM ≥ 0.48, BSA > 2300 Å², CDRs ≥ 4 engaged). Confidence metrics were statistically indistinguishable across groups: iPTM of 0.68 ± 0.20 for true positives versus 0.75 ± 0.13 for wrong-target negatives, with mean inter-chain PAE near 18 Å for every group.
+### Where the project is now
 
-The conclusion is that **AF2-Multimer models scaffold docking, not sequence-specific recognition.** The immunoglobulin framework geometry dominates the interface prediction regardless of what the CDRs say or which target is presented, so standard confidence scores cannot discriminate binding specificity. The only discriminators that survived were contact Jaccard similarity against a reference crystal epitope and interface RMSD — both of which require a known crystal structure as ground truth. That finding directly constrains how design outputs can be interpreted and clarifies which wet-lab validation is actually load-bearing. Structure recovery itself was target-dependent: MSLN was well recovered (RMSD 1.45 Å on 4F3F), while CD22 was systematically mispredicted across both antibodies tested.
+We've progressed to assembling constructs and checking their sequences. Binding assays and tests of CAR function are the next steps.
 
-### Learning the Limits of Structural Features
+The confidence drop doesn't tell us that these candidates fail to bind. The models use different score scales, and re-evaluation changes the structural guidance and sampling used during design. For me, the useful result is knowing how much the apparent promise of a design can depend on how we choose to evaluate it.
 
-As a secondary ranking approach, I trained a Random Forest classifier on 13 features extracted from AF2-Multimer predictions — confidence (CDR pLDDT, full-chain pLDDT, iPTM, pTM, iPTM/pTM ratio), geometry (BSA, CDR engagement, CDR3 contact fraction), and inter-chain PAE (max, mean, min). The positives were 43 experimentally validated EpCAM-binding VHHs; the negatives combined CDR-scrambled decoys with off-target VHHs drawn from the literature.
-
-The classifier reproduced the benchmark's failure mode, now quantitatively. It reached an out-of-fold AUROC of **0.83 against CDR-scrambled decoys** but collapsed to **0.500 (95% CI [0.363, 0.652]) against held-out off-target VHHs** — no better than a coin flip. It had learned to detect the CDR pLDDT degradation introduced by scrambling, not binding specificity.
-
-Applying the classifier to 94 designed EpCAM binders made the limitation concrete, and revealed something sharper. Every design scored in a narrow band below 0.6, and the reason is instructive: because the design engine explicitly optimizes for the same AF2-Multimer interface metrics that feed the classifier, it drives every candidate toward nearly identical feature values. The classifier is then left ranking residual CDR pLDDT variation that is essentially noise. Structural features alone cannot substitute for epitope-specific evaluation against defined hotspot residues — and, ultimately, cannot substitute for experimental labels.
-
-### Skills Used
-
-- AlphaFold2-Multimer (ColabFold), JAX-based gradient optimization
-- VHH/nanobody design (CDR loop engineering, Chothia numbering, ANARCI)
-- Structural bioinformatics (BSA, RMSD, contact-map analysis, FreeSASA)
-- ESM2 protein language model scoring
-- Random Forest classification (scikit-learn)
-- Python, BioPython, OpenMM/AMBER
+**Tools and methods:** mBER, AlphaFold 3, Protenix, AlphaFold2-Multimer, Chai-1, Python, GPU batch workflows, structural contact analysis, and experimental construct design.
